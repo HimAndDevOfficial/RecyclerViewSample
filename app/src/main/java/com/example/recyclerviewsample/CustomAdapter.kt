@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 
 
-class CustomAdapter(private val dataSet: ArrayList<String>) :
+class CustomAdapter(private val dataSet: ArrayList<ChatData>) :
     RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     /**
@@ -20,10 +20,11 @@ class CustomAdapter(private val dataSet: ArrayList<String>) :
     //Each individual element in the list is defined by a view holder object
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val textView: TextView
-
+        val textViewdesc: TextView
         init {
             // Define click listener for the ViewHolder's View
             textView = view.findViewById(R.id.itemTextView)
+            textViewdesc = view.findViewById(R.id.description)
         }
     }
 
@@ -46,11 +47,10 @@ class CustomAdapter(private val dataSet: ArrayList<String>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.textView.text = dataSet[position]
+        viewHolder.textView.text = dataSet[position].text
 
-        viewHolder.textView.setOnClickListener {
-            Toast.makeText( viewHolder.textView.context,"you clicked"+dataSet[position].toString(),Toast.LENGTH_SHORT).show()
-        }
+        viewHolder.textViewdesc.text= dataSet[position].message
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

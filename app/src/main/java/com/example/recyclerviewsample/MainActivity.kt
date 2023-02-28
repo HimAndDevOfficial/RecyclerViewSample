@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     private val itemsList = ArrayList<String>()
+    private val dataChat = ArrayList<ChatData>()
     private lateinit var customAdapter: CustomAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-        customAdapter = CustomAdapter(itemsList)
+        customAdapter = CustomAdapter(dataChat)
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = customAdapter
@@ -26,7 +27,11 @@ class MainActivity : AppCompatActivity() {
                 layoutManager.orientation
             )
         )
-        prepareItems()
+        //add data
+     //   prepareItems()
+
+        prepareDataClassItem()
+
     }
 
 
@@ -36,8 +41,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
+    private fun prepareDataClassItem()
+    {
+        for (i in 1..20) {
+            dataChat.add(ChatData(R.drawable.userimage, "Item " + i,"Message from"+i))
+        }
+        customAdapter.notifyDataSetChanged()
+    }
 
 
 
